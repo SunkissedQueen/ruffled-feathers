@@ -1,11 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import chicken from './chicken.jpeg'
+import './App.css'
+import Home from './pages/Home'
 
-function App() {
+export default function App() {
   return (
+    <>
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={chicken} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -19,7 +22,8 @@ function App() {
         </a>
       </header>
     </div>
+      <Home />
+    </>
   );
 }
 
-export default App;
