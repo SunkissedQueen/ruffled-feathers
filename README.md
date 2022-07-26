@@ -51,25 +51,35 @@ export default function App() {
   ```
 - Create placeholder data in the src directory
 ```javascript
+// using class components
 // src/mockCoop.js
 let chickens = [
   {
     id: 1,
     name: "Miss Priss",
-    enjoys: "cackling when babies sleep",
-    image: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-  },
-  {
+    hobbies: "cackling when babies sleep",
+    image: "https://upload.wikimedia.org/wikipedia/commons/9/96/Chickens_in_the_rain_in_Jiaoxi.jpg"
+  },{
     id: 2,
-    name: "Fog Doodle",
-    enjoys: "pacing on the roof",
-    image: "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1092&q=80"
+    name: "Fog Horn",
+    hobbies: "pacing on the roof",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRICrAyg48CCgH5UK_Bey3WXX8LE6dj7f5zQ&usqp=CAU"
+  },{
+    id: 3,
+    name: "Chick Lily",
+    hobbies: "prancing in the dirt",
+    image: "https://live.staticflickr.com/7201/6825992286_1762072c7b_b.jpg"
+  },{
+    id: 4,
+    name: "Roo Stan",
+    hobbies: "ruffling feathers",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj12DU8aptOCujtMyGovvWcKcHbpRsdEQwrg&usqp=CAU"
   }
 ]
+
 export default chickens
-```
-- Set the mock data into state in the App.js and pass it around the application.
-```javascript
+
+//  Set the mock data into state in the App.js and pass it around the application.
 // src/App.js
 import mockCoop from './mockCoop.js'
 
@@ -80,31 +90,97 @@ class App extends Component{
       chickens: mockCoop
     }
   }
+
+
+// using react hooks and functional components 
+// src/MockCoop.js
+// import React and the useState hook
+import React, {useState} from "react"
+
+// component function 
+export default function MockCoop() {
+  // set the initial state (an array with 1 object to start (this can be an empty object to start))
+  const [chickens, setChickens] = useState([
+    {
+      id: 1,
+      name: "Miss Priss",
+      hobbies: "cackling when babies sleep",
+      seeking: "a rooster who does not mind warming the eggs",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/96/Chickens_in_the_rain_in_Jiaoxi.jpg"
+    },{
+      id: 2,
+      name: "Fog Horn",
+      hobbies: "pacing on the roof",
+      seeking: "anything with feathers",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRICrAyg48CCgH5UK_Bey3WXX8LE6dj7f5zQ&usqp=CAU"
+    },{
+      id: 3,
+      name: "Chick Lily",
+      hobbies: "prancing in the dirt",
+      seeking: "a hen who has crossed the road",
+      image: "https://live.staticflickr.com/7201/6825992286_1762072c7b_b.jpg"
+    },{
+      id: 4,
+      name: "Roo Stan",
+      hobbies: "ruffling feathers",
+      seeking: "a rooster who will share the roof",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj12DU8aptOCujtMyGovvWcKcHbpRsdEQwrg&usqp=CAU"
+    }
+  ])
+}
+
+// App.js
+import MockCoop from './MockCoop'
+
+
+// CluckIndex
+<div className="App">
+  <ul>
+    {/* map over the users array */}
+    {chickens.map((chicken) => (
+      // display a <div> element with the user.name and user.type
+      // parent element needs to have a unique key
+      <div key={chicken.id}>
+        <img src={chicken.image} alt="profile of chicken"/>
+        <p>{chicken.seeking}</p>
+      </div>
+    ))}
+  </ul>
+  <button onClick={handleNewChicken}>Add eligible chicken</button>
+</div>
+
 ```
 - Add the ability to navigate between pages
-  - $ yarn add react-router-dom@5.3.0
+  - $ yarn add react-router-dom
   - Import routing components to App.js
   ```javascript
+  // replace switch with routes in version 6, use * instead of exact, element  with component call replaces component
   import {
     BrowserRouter as Router,
-    Route,
-    Switch
+    Routes,
+    Route
   } from 'react-router-dom'
 
   <Router>
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/catindex" component={CatIndex} />
-      <Route path="/catshow" component={CatShow} />
-      <Route path="/catnew" component={CatNew} />
-      <Route path="/catedit" component={CatEdit} />
-      <Route component={NotFound}/>
-    </Switch>
+    <Routes>
+      <Route exact path="/*" element={<Home />} />
+      <Route path="/cluckindex" element={<CluckIndex />} />
+      <Route path="/cluckshow" element={<CluckShow />} />
+      <Route path="/clucknew" element={<CluckNew />} />
+      <Route path="/cluckedit" element={<CluckEdit />} />
+      <Route element={<NoCluck />}/>
+    </Routes>
   </Router>
   ```
+
 ## Research
 - https://www.w3schools.com/react/react_hooks.asp
 - https://reactjs.org/docs/hooks-intro.html
 - https://www.freecodecamp.org/news/react-components-jsx-props-for-beginners/
 - https://www.geeksforgeeks.org/reactjs-functional-components/
 - https://www.w3schools.com/react/react_components.asp
+- https://medium.com/swlh/import-components-in-react-like-a-pro-b1340cb76a1b
+- https://reactrouter.com/docs/en/v6/upgrading/v5#upgrade-to-react-router-v6
+- https://dev.to/joelynn/react-hooks-working-with-state-arrays-2n2g
+- https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
+- https://ordinarycoders.com/blog/article/react-functional-components-state-props
