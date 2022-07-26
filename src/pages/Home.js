@@ -9,7 +9,7 @@ export default function Home() {
       <header className="home-header">
         <img src={chicken} className="home-logo" alt="logo" />
         <p>
-          These eggs are hatched and ready to be matched.
+          These eggs have hatched and are ready to be matched!
         </p>
         <a
           className="home-link"
