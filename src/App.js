@@ -1,9 +1,9 @@
 import React from 'react'
+import { Header, Footer } from './components'
 
+// import each individually
 import { 
-  Home, 
-  Header, 
-  Footer, 
+  Home,  
   CluckIndex, 
   CluckShow, 
   CluckNew, 

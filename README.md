@@ -214,3 +214,17 @@ describe("When Home renders", () => {
 - https://dev.to/joelynn/react-hooks-working-with-state-arrays-2n2g
 - https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
 - https://ordinarycoders.com/blog/article/react-functional-components-state-props
+
+
+      <h1>CluckIndex Page: A Basic Functional Component</h1>
+      <ul>
+        {/* map over the users array */}
+        {chickens.map((chicken) => (
+          // display a <div> element with the user.name and user.type
+          // parent element needs to have a unique key
+          <div key={chicken.id}>
+            <img src={chicken.image} alt="profile of chicken"/>
+            <p>Seeking {chicken.seeking}</p>
+          </div>
+        ))}
+      </ul>

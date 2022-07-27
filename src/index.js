@@ -10,9 +10,6 @@ export {default as CluckShow} from './pages/CluckShow'
 export {default as CluckNew} from './pages/CluckNew'
 export {default as CluckEdit} from './pages/CluckEdit'
 export {default as NoCluck} from './pages/NoCluck'
-export {default as Header} from './components/Header'
-export {default as Footer} from './components/Footer'
-export {default as MockCoop} from './MockCoop'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
